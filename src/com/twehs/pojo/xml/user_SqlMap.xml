@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap >
+  <resultMap id="ibatorgenerated_user_BaseResultMap" class="com.twehs.pojo.User" >
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="logincode" property="logincode" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+     <result column="roleid" property="roleid" jdbcType="INTEGER" />  
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="bz" property="bz" jdbcType="VARCHAR" />
+    <result column="roleid" property="role" select="ibatorgenerated_role_selectroleByPrimaryKey" />
+  </resultMap>
+  <sql id="ibatorgenerated_user_Example_Where_Clause" >
+   
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  
+  <select id="ibatorgenerated_user_selectByExample" resultMap="ibatorgenerated_user_BaseResultMap" parameterClass="com.twehs.pojo.example.UserExample" >
+    
+    select userid, logincode, password, username, roleid, state, bz
+    from user
+    <isParameterPresent >
+      <include refid="ibatorgenerated_user_Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    
+      、         <isNotNull property="limitClauseStart">
+      limit $limitClauseStart$, $limitClauseCount$
+      </isNotNull>
+      
+    </isParameterPresent>
+  </select>
+  
+  
+  
+  <select id="ibatorgenerated_user_selectByloginCode" resultMap="ibatorgenerated_user_BaseResultMap" parameterClass="com.twehs.pojo.User" >
+    
+    select userid, logincode, password, username, roleid, state, bz
+    from user
+  where logincode =#logincode#
+  </select>
+  
+  
+  
+  <select id="ibatorgenerated_user_selectByPaper" resultMap="ibatorgenerated_user_BaseResultMap" parameterClass="java.util.Map" >
+      select * from user  
+      order by userid limit #begin#,#pageSize#
+ </select>
+
+
+
+  
+  
+  
+  <select id="ibatorgenerated_user_selectByPrimarypassword" resultMap="ibatorgenerated_user_BaseResultMap" parameterClass="com.twehs.pojo.User" >
+  
+    select *
+    from user
+    where logincode = #logincode# and password = #password#
+  </select>
+  
+  
+  
+  <select id="ibatorgenerated_user_selectByPrimaryKey" resultMap="ibatorgenerated_user_BaseResultMap" parameterClass="com.twehs.pojo.User" >
+  
+    select userid, logincode, password, username, roleid, state, bz
+    from user
+    where userid = #userid:INTEGER#
+  </select>
+  
+  
+
+   <select id="ibatorgenerated_user_selectByroleid" resultMap="ibatorgenerated_user_BaseResultMap" parameterClass="com.twehs.pojo.User" >
+    select userid, logincode, password, username, roleid, state, bz
+    from user
+    where roleid = #roleid:INTEGER#
+  </select>
+  
+  
+  
+  <delete id="ibatorgenerated_user_deleteByPrimaryKey" parameterClass="com.twehs.pojo.User" >
+
+    delete from user
+    where userid = #userid:INTEGER#
+  </delete>
+  
+  <delete id="ibatorgenerated_user_deleteByExample" parameterClass="com.twehs.pojo.example.UserExample" > 
+    delete from user
+    <include refid="ibatorgenerated_user_Example_Where_Clause" />
+  </delete>
+  
+  <insert id="ibatorgenerated_user_insert" parameterClass="com.twehs.pojo.User" >
+    <selectKey resultClass="java.lang.Integer" keyProperty="userid" type="post" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user (logincode, password, username, roleid, state, bz)
+    values (#logincode:VARCHAR#, #password:VARCHAR#, #username:VARCHAR#, #roleid:INTEGER#,
+      #state:INTEGER#, #bz:VARCHAR#)
+  </insert>
+  <insert id="ibatorgenerated_user_insertSelective" parameterClass="com.twehs.pojo.User" >
+   
+    <selectKey resultClass="java.lang.Integer" keyProperty="userid" type="post" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="logincode" >
+        logincode
+      </isNotNull>
+      <isNotNull prepend="," property="password" >
+        password
+      </isNotNull>
+      <isNotNull prepend="," property="username" >
+        username
+      </isNotNull>
+      <isNotNull prepend="," property="roleid" >
+        roleid
+      </isNotNull>
+      <isNotNull prepend="," property="state" >
+        state
+      </isNotNull>
+      <isNotNull prepend="," property="bz" >
+        bz
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="logincode" >
+        #logincode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="password" >
+        #password:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="username" >
+        #username:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="roleid" >
+        #roleid:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="state" >
+        #state:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="bz" >
+        #bz:VARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <select id="ibatorgenerated_user_countByExample" parameterClass="com.twehs.pojo.example.UserExample" resultClass="java.lang.Integer" >
+   
+    select count(*) from user
+    <include refid="ibatorgenerated_user_Example_Where_Clause" />
+  </select>
+  
+  
+  
+ 
+  <select id="ibatorgenerated_user_countAll"  resultClass="java.lang.Integer" >
+    select count(*) from user
+  </select>
+  
+  
+  
+  
+  <update id="ibatorgenerated_user_updateByExampleSelective" >
+  
+    update user
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.userid" >
+        userid = #record.userid:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="record.logincode" >
+        logincode = #record.logincode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.password" >
+        password = #record.password:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.username" >
+        username = #record.username:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.roleid" >
+        roleid = #record.roleid:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="record.state" >
+        state = #record.state:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bz" >
+        bz = #record.bz:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="ibatorgenerated_user_Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="ibatorgenerated_user_updateByExample" >
+  
+    update user
+    set userid = #record.userid:INTEGER#,
+      logincode = #record.logincode:VARCHAR#,
+      password = #record.password:VARCHAR#,
+      username = #record.username:VARCHAR#,
+      roleid = #record.roleid:INTEGER#,
+      state = #record.state:INTEGER#,
+      bz = #record.bz:VARCHAR#
+    <isParameterPresent >
+      <include refid="ibatorgenerated_user_Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  
+  
+  
+  <update id="ibatorgenerated_user_updateByPrimaryKeySelective" parameterClass="com.twehs.pojo.User" >
+    update user
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="logincode" >
+        logincode = #logincode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="password" >
+        password = #password:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="username" >
+        username = #username:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="roleid" >
+        roleid = #roleid:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="state" >
+        state = #state:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="bz" >
+        bz = #bz:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where userid = #userid:INTEGER#
+  </update>
+  
+  
+  
+  <update id="ibatorgenerated_user_updateByPrimaryKey" parameterClass="com.twehs.pojo.User" >
+  
+    update user
+    set logincode = #logincode:VARCHAR#,
+      password = #password:VARCHAR#,
+      username = #username:VARCHAR#,
+      roleid = #roleid:INTEGER#,
+      state = #state:INTEGER#,
+      bz = #bz:VARCHAR#
+    where userid = #userid:INTEGER#
+  </update>
+</sqlMap>

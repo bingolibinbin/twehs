@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+
+	<bean id="sqlMapClient"
+		class="com.twehs.utils.system.SqlMapClientFactory" factory-method="getSqlMapClient">
+	</bean>
+
+
+	<!-- 配置DAO -->
+	<bean id="userDAO" class="com.twehs.dao.power.impl.UserDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="userDao" class="com.twehs.dao.power.impl.UserDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="roleDAO" class="com.twehs.dao.power.impl.RoleDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<bean id="vuserDao" class="com.twehs.dao.power.impl.VuserMenuDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+    <bean id="roleMenuDAO" class="com.twehs.dao.power.impl.RoleMenuDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	 <bean id="menuDAO" class="com.twehs.dao.power.impl.MenuDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	 </bean>
+	 
+	 <bean id="typeDAO" class="com.twehs.dao.power.impl.TypeDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	 </bean>
+	 
+	  <bean id="newsDAO" class="com.twehs.dao.content.impl.ContentDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	 </bean>
+	 
+	  <bean id="productsDAO" class="com.twehs.dao.content.impl.ContentDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	 </bean>
+	 
+	  <bean id="projectsDAO" class="com.twehs.dao.content.impl.ContentDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	 </bean>
+	 
+	  <bean id="solutionsDAO" class="com.twehs.dao.content.impl.ContentDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	 </bean>
+	 
+	 
+	 <bean id="supportsDAO" class="com.twehs.dao.content.impl.ContentDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	 </bean>
+	 
+	  <bean id="expDAO" class="com.twehs.dao.content.impl.ContentDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	  </bean>
+	 
+	  <bean id="commentDAO" class="com.twehs.dao.content.impl.CommentDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	 </bean>
+	 
+	  <bean id="messageDAO" class="com.twehs.dao.content.impl.MessageDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	 </bean>
+	 
+	  <bean id="employeeDAO" class="com.twehs.dao.content.impl.EmployeeDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	 </bean>
+	 
+	  <bean id="notificationDAO" class="com.twehs.dao.content.impl.NodificationDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	 </bean>
+	 
+	  <bean id="companyDAO" class="com.twehs.dao.company.impl.CompanyDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	 </bean>
+	 
+
+
+
+
+	<!-- 配置Service -->
+	<bean id="userService" class="com.twehs.service.power.impl.UserServiceImpl">
+		<property name="userDao">
+			<ref local="userDao" />
+		</property>
+		
+		<property name="vuserDao">
+			<ref local="vuserDao" />
+		</property>
+	</bean>
+	
+	<bean id="roleService" class="com.twehs.service.power.impl.RoleServiceImpl">
+		<property name="roleDAO">
+			<ref local="roleDAO" />
+		</property>
+		<property name="userDAO">
+			<ref local="userDAO" />
+		</property>
+		<property name="roleMenuDAO">
+			<ref local="roleMenuDAO" />
+		</property>
+			<property name="menuDAO">
+			<ref local="menuDAO" />
+		</property>
+	</bean>
+	
+	
+	<bean id="menuService" class="com.twehs.service.menu.impl.MenuServiceImpl">
+		<property name="menuDAO">
+			<ref local="menuDAO" />
+		</property>
+	</bean>
+	
+	<bean id="ttypeService" class="com.twehs.service.menu.impl.TypeServiceImpl">
+		<property name="typeDAO">
+			<ref local="typeDAO" />
+		</property>
+	</bean>
+	
+	
+	<bean id="newsService" class="com.twehs.service.classify.impl.NewsServiceImpl">
+		<property name="newsDAO">
+			<ref local="newsDAO" />
+		</property>
+		
+		<property name="typeDAO">
+			<ref local="typeDAO" />
+		</property>
+		
+	</bean>
+	
+	
+	<bean id="productsService" class="com.twehs.service.classify.impl.ProductsServiceImpl">
+		<property name="productsDAO">
+			<ref local="productsDAO" />
+		</property>
+		
+		<property name="typeDAO">
+			<ref local="typeDAO" />
+		</property>
+	</bean>
+	
+	
+	<bean id="projectsService" class="com.twehs.service.classify.impl.ProjectsServiceImpl">
+		<property name="projectsDAO">
+			<ref local="projectsDAO" />
+		</property>
+		
+		<property name="typeDAO">
+			<ref local="typeDAO" />
+		</property>
+	</bean>
+	
+	<bean id="solutionsService" class="com.twehs.service.classify.impl.SolutionsServiceImpl">
+		<property name="solutionsDAO">
+			<ref local="solutionsDAO" />
+		</property>
+		
+		<property name="typeDAO">
+			<ref local="typeDAO" />
+		</property>
+	</bean>
+	
+	<bean id="supportService" class="com.twehs.service.classify.impl.SupportServiceImpl">
+		<property name="supportsDAO">
+			<ref local="supportsDAO" />
+		</property>
+		
+		<property name="typeDAO">
+			<ref local="typeDAO" />
+		</property>
+	</bean>
+	
+	<bean id="expService" class="com.twehs.service.classify.impl.ExperiencesServiceImpl">
+		<property name="expDAO">
+			<ref local="expDAO" />
+		</property>
+		
+		<property name="typeDAO">
+			<ref local="typeDAO" />
+		</property>
+	</bean>
+	
+	<bean id="commentService" class="com.twehs.service.classify.impl.CommentServiceImpl">
+		<property name="commentDAO">
+			<ref local="commentDAO" />
+		</property>
+	</bean>
+	
+	<bean id="employeeService" class="com.twehs.service.classify.impl.EmployeeServiceImpl">
+		<property name="employeeDAO">
+			<ref local="employeeDAO" />
+		</property>
+	</bean>
+	
+	<bean id="messageService" class="com.twehs.service.classify.impl.MessageServiceImpl">
+		<property name="messageDAO">
+			<ref local="messageDAO" />
+		</property>
+	</bean>
+	
+	
+	<bean id="notificationService" class="com.twehs.service.classify.impl.NotificationServiceImpl">
+		<property name="notificationDAO">
+			<ref local="notificationDAO" />
+		</property>
+	</bean>
+	
+
+	<bean id="companyService" class="com.twehs.service.company.impl.CompanyServiceImpl">
+		<property name="companyDAO">
+			<ref local="companyDAO" />
+		</property>
+	</bean>
+	
+	
+	<!-- 定义Struts配置 -->
+	<bean name="userAction" class="com.twehs.action.power.UserAction">
+		<property name="userService">
+			<ref local="userService" />
+		</property>
+	</bean>
+	<bean name="roleAction" class="com.twehs.action.power.RoleAction">
+		<property name="roleService">
+			<ref local="roleService" />
+		</property>
+	</bean>
+	
+	<bean name="menuAction" class="com.twehs.action.menu.MenuAction">
+		<property name="menuService">
+			<ref local="menuService" />
+		</property>
+	</bean>
+	
+	<bean name="typeAction" class="com.twehs.action.menu.TypeAction">
+		<property name="ttypeService">
+			<ref local="ttypeService" />
+		</property>
+	</bean>
+	
+	
+	<bean name="newsAction" class="com.twehs.action.classify.NewsAction">
+		<property name="newsService">
+			<ref local="newsService" />
+		</property>
+	</bean>
+	
+	<bean name="productsAction" class="com.twehs.action.classify.ProductsAction">
+		<property name="productsService">
+			<ref local="productsService" />
+		</property>
+	</bean>
+	
+	
+	<bean name="projectsAction" class="com.twehs.action.classify.ProjectsAction">
+		<property name="projectsService">
+			<ref local="projectsService" />
+		</property>
+	</bean>
+	
+	<bean name="solutionsAction" class="com.twehs.action.classify.SolutionsAction">
+		<property name="solutionsService">
+			<ref local="solutionsService" />
+		</property>
+	</bean>
+	
+	<bean name="supportsAction" class="com.twehs.action.classify.SupportAction">
+		<property name="supportService">
+			<ref local="supportService" />
+		</property>
+	</bean>
+	
+	<bean name="experiencesAction" class="com.twehs.action.classify.ExperiencesAction">
+		<property name="expService">
+			<ref local="expService" />
+		</property>
+	</bean>
+	
+	
+	<bean name="commentsAction" class="com.twehs.action.classify.CommentAction">
+		<property name="commentService">
+			<ref local="commentService" />
+		</property>
+	</bean>
+	
+	
+	<bean name="messagesAction" class="com.twehs.action.classify.MessageAction">
+		<property name="messageService">
+			<ref local="messageService" />
+		</property>
+	</bean>
+	
+	
+	<bean name="employeeAction" class="com.twehs.action.classify.EmployeeAction">
+		<property name="employeeService">
+			<ref local="employeeService" />
+		</property>
+	</bean>
+	
+	
+	<bean name="notificationsAction" class="com.twehs.action.classify.NotificationAction">
+		<property name="notificationService">
+			<ref local="notificationService" />
+		</property>
+	</bean>
+	
+	
+	<bean name="companysAction" class="com.twehs.action.company.CompanyAction">
+		<property name="companyService">
+			<ref local="companyService" />
+		</property>
+	</bean>
+	
+	
+</beans>

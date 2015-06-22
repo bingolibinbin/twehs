@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="twehs"
+  id="myeclipse.1415148197752"
+  context-root="/twehs"
+  j2ee-spec="5.0"
+  archive="twehs.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
